@@ -5,7 +5,7 @@ if not status_ok then
   return
 end
 
-require("harpoon").setup({
+harpoon.setup({
   global_settings = {
     -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
     save_on_toggle = false,
@@ -27,9 +27,10 @@ require("harpoon").setup({
  }
 })
 
+-- TODO: Define keymaps here are registert with whichkey?
 -- Set some keymaps
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+--[[ local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap ]]
 
 --[[ keymap("n", "<leader>h", ":lua require('harpoon.ui').toggle_quick_menu() <CR>", opts)
 keymap("n", "<leader>h", ":lua require('harpoon.ui').toggle_quick_menu() <CR>", opts) ]]
