@@ -1,6 +1,6 @@
 require "user.debugging.dapui"
 
-require('dap-python').setup("/Users/maxsydney/.virtualenvs/debugpy/bin/python")
+require('dap-python').setup("/home/maxsydney/emission-venv/bin/python")
 require("nvim-dap-virtual-text").setup()
 
 print("This works")
