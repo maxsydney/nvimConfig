@@ -1,1 +1,1 @@
-require('dap-python').setup("/Users/maxsydney/.virtualenvs/debugpy/bin/python")
+require('dap-python').setup("/home/maxsydney/emission-venv/bin/python")
