@@ -183,8 +183,12 @@ local mappings = {
     name = "Harpoon",
     h = { ":lua require('harpoon.ui').toggle_quick_menu() <CR>", "Harpoon Menu" },
     a = { ":lua require('harpoon.mark').add_file() <CR>", "Add file" },
-    n = { ":lua require('harpoon.mark').nev_next() <CR>", "Next mark" },
-    p = { ":lua require('harpoon.mark').nav_prev() <CR<", "Prev mark" },
+    n = { ":lua require('harpoon.mark').nav_next() <CR>", "Next mark" },
+    p = { ":lua require('harpoon.mark').nav_prev() <CR>", "Prev mark" },
+    q = { ":lua require('harpoon.ui').nav_file(1) <CR>", "Mark 1" },
+    w = { ":lua require('harpoon.ui').nav_file(2) <CR>", "Mark 2" },
+    e = { ":lua require('harpoon.ui').nav_file(3) <CR>", "Mark 3" },
+    r = { ":lua require('harpoon.ui').nav_file(4) <CR>", "Mark 4" },
   },
 }
 
