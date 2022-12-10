@@ -1,8 +1,30 @@
 
 vim.cmd([[
-let g:vimspector_sidebar_width = 85
+let g:vimspector_sidebar_width = 25
 let g:vimspector_bottombar_height = 15
 let g:vimspector_terminal_maxwidth = 70
+
+function! s:CustomiseUI()
+  " Customise the basic UI...
+
+  " Close the output window
+  call win_gotoid( g:vimspector_session_windows.output )
+  q
+endfunction
+
+function s:SetUpTerminal()
+  " Customise the terminal window size/position
+  " For some reasons terminal buffers in Neovim have line numbers
+  call win_gotoid( g:vimspector_session_windows.terminal )
+  set norelativenumber nonumber
+endfunction
+
+augroup MyVimspectorUICustomistaion
+  autocmd!
+  autocmd User VimspectorUICreated call s:CustomiseUI()
+  autocmd User VimspectorTerminalOpened call s:SetUpTerminal()
+augroup END
+
 ]])
 
 
@@ -19,15 +41,3 @@ keymap("n", "Db", "<cmd>call vimspector#ToggleBreakpoint()<cr>", opts)
 keymap("n", "Dw", "<cmd>call vimspector#AddWatch()<cr>", opts)
 keymap("n", "De", "<cmd>call vimspector#Evaluate()<cr>", opts)
 
--- -- Vimspector
--- vim.cmd([[
--- nmap <F9> 
--- nmap <F5> <cmd>call vimspector#StepOver()<cr>
--- nmap <F8> <cmd>call vimspector#Reset()<cr>
--- nmap <F11> <cmd>call vimspector#StepOver()<cr>")
--- nmap <F12> <cmd>call vimspector#StepOut()<cr>")
--- nmap <F10> <cmd>call vimspector#StepInto()<cr>")
--- ]])
--- map('n', "Db", ":call vimspector#ToggleBreakpoint()<cr>")
--- map('n', "Dw", ":call vimspector#AddWatch()<cr>")
--- map('n', "De", ":call vimspector#Evaluate()<cr>")
