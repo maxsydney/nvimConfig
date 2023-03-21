@@ -88,10 +88,10 @@ local mappings = {
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  ["ff"] = { "<cmd>Telescope find_files theme=ivy<cr>","Find files"},
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["o"] = { "<cmd>ClangdSwitchSourceHeader<CR>", "Switch source/header" },
+  ["G"] = { "<cmd>let @+ = expand(\"%\")<CR>", "Copy relative path" },
 
   p = {
     name = "Packer",

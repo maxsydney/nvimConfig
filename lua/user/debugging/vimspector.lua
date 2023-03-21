@@ -1,4 +1,3 @@
-
 vim.cmd([[
 let g:vimspector_sidebar_width = 25
 let g:vimspector_bottombar_height = 15
@@ -31,13 +30,15 @@ augroup END
 -- Also set some convenient F row keymaps
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
-keymap("n", "<F5>", "<cmd>call vimspector#Launch()<cr>", opts)
+keymap("n", "<F5>", "<cmd>call vimspector#Continue()<cr>", opts)
+keymap("n", "<F17>", "<cmd>call vimspector#Stop()<cr>", opts) -- Shift-F5
+keymap("n", "<F41>", "<cmd>call vimspector#Restart()<cr>", opts) -- Ctrl-Shift-F5
 keymap("n", "<F8>", "<cmd>call vimspector#Reset()<cr>", opts)
+keymap("n", "<F9>", "<cmd>call vimspector#ToggleBreakpoint()<cr>", opts)
 keymap("n", "<F10>", "<cmd>call vimspector#StepOver()<cr>", opts)
 keymap("n", "<F11>", "<cmd>call vimspector#StepInto()<cr>", opts)
-keymap("n", "<S-F11>", "<cmd>call vimspector#StepOut()<cr>", opts)
+keymap("n", "<F23>", "<cmd>call vimspector#StepOut()<cr>", opts) -- Shift-F11
 
 keymap("n", "Db", "<cmd>call vimspector#ToggleBreakpoint()<cr>", opts)
 keymap("n", "Dw", "<cmd>call vimspector#AddWatch()<cr>", opts)
 keymap("n", "De", "<cmd>call vimspector#Evaluate()<cr>", opts)
-
