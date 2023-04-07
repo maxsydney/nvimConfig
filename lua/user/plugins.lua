@@ -1,5 +1,5 @@
 local fn = vim.fn
-
+ 
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -90,8 +90,7 @@ return packer.startup(function(use)
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Treesitter
-  use ({"nvim-treesitter/nvim-treesitter", commit = "addc129a4f272aba0834bd0a7b6bd4ad5d8c801b"})
-
+  use ({"nvim-treesitter/nvim-treesitter", commit = "6e37050e50e80e4324202a6b8fbac6c7fb90c546"}) 
   -- use({
   --   "nvim-treesitter/nvim-treesitter",
   --   commit = "518e27589c0463af15463c9d675c65e464efc2fe",
