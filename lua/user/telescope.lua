@@ -80,7 +80,14 @@ telescope.setup {
     pickers = {
         find_files = {
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            -- find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            find_command = {
+                'fd',
+                '--type', 'file',
+                '--type', 'symlink',
+                '--hidden',
+                '--ignore-file', vim.fn.expand('.rgignore'),
+            },
         },
     },
     extensions = {
@@ -89,7 +96,6 @@ telescope.setup {
             override_generic_sorter = true, -- override the generic sorter
             override_file_sorter = true, -- override the file sorter
             case_mode = "ignore_case", -- or "ignore_case" or "respect_case"
-            -- the default case_mode is "smart_case"
         },
         frecency = {
             show_scores = true,
@@ -101,8 +107,6 @@ telescope.setup {
     },
 }
 
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
 telescope.load_extension('fzf')
 telescope.load_extension("frecency")
 
