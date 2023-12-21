@@ -5,11 +5,13 @@ end
 
 local servers = {
     "clangd",
-    "sumneko_lua",
     "pyright",
     "bashls",
     "yamlls",
     "rust_analyzer",
+    "sumneko_lua",
+    --[[ "ccls", ]]
+    "yamlls",
     "taplo",
     "lemminx"
 }
@@ -29,7 +31,7 @@ for _, server in pairs(servers) do
         capabilities = require("user.lsp.handlers").capabilities,
     }
 
-    if server == "sumneko_lua" then
+    if server == "lua_ls" then
         local sumneko_opts = require "user.lsp.settings.sumneko_lua"
         opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
     end
@@ -40,7 +42,6 @@ for _, server in pairs(servers) do
     end
 
     if server == "lemminx" then
-        print("Setting lemminx options")
         local lemminx_opts = require("user.lsp.settings.lemminx")
         opts = vim.tbl_deep_extend("force", lemminx_opts, opts)
     end
@@ -68,29 +69,29 @@ for _, server in pairs(servers) do
         keymap("n", "<leader>rss", "<cmd>RustSSR<Cr>", key_opts)
         keymap("n", "<leader>rxd", "<cmd>RustOpenExternalDocs<Cr>", key_opts)
 
-        require("rust-tools").setup {
-            tools = {
-                on_initialized = function()
-                    vim.cmd [[
-            autocmd BufEnter,CursorHold,InsertLeave,BufWritePost *.rs silent! lua vim.lsp.codelens.refresh()
-          ]]
-                end,
-            },
-            server = {
-                on_attach = require("user.lsp.handlers").on_attach,
-                capabilities = require("user.lsp.handlers").capabilities,
-                settings = {
-                    ["rust-analyzer"] = {
-                        lens = {
-                            enable = true,
-                        },
-                        checkOnSave = {
-                            command = "clippy",
-                        },
-                    },
-                },
-            },
-        }
+         require("rust-tools").setup {
+             tools = {
+                 on_initialized = function()
+                     vim.cmd [[
+             autocmd BufEnter,CursorHold,InsertLeave,BufWritePost *.rs silent! lua vim.lsp.codelens.refresh()
+           ]]
+                 end,
+             },
+             server = {
+                 on_attach = require("user.lsp.handlers").on_attach,
+                 capabilities = require("user.lsp.handlers").capabilities,
+                 settings = {
+                     ["rust-analyzer"] = {
+                         lens = {
+                             enable = true,
+                         },
+                         checkOnSave = {
+                             command = "clippy",
+                         },
+                     },
+                 },
+             },
+         }
 
         goto continue
     end
