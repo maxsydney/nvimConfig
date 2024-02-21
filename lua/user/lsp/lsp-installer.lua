@@ -9,8 +9,7 @@ local servers = {
     "bashls",
     "yamlls",
     "rust_analyzer",
-    "sumneko_lua",
-    --[[ "ccls", ]]
+    "lua_ls",
     "yamlls",
     "taplo",
     "lemminx"
