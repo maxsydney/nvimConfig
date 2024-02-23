@@ -1,21 +1,29 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-    return
-end
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 
 local servers = {
-    "clangd",
-    "pyright",
-    "bashls",
-    "yamlls",
-    "rust_analyzer",
-    "lua_ls",
-    "yamlls",
-    "taplo",
-    "lemminx"
+    "clangd",               -- C/C++
+    "pyright",              -- Python
+    "bashls",               -- Bash
+    "yamlls",               -- YAML
+    "rust_analyzer",        -- rust
+    "lua_ls",               -- lua
+    "taplo",                -- TOML
+    "lemminx",              -- XML
+    "robotframework_ls",    -- Robot
+    "jsonls"                -- JSON
 }
 
-lsp_installer.setup()
+require("mason-lspconfig").setup {
+    ensure_installed = servers,
+}
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
