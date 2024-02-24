@@ -107,8 +107,10 @@ telescope.setup {
     },
 }
 
+-- Extensions
 telescope.load_extension('fzf')
 telescope.load_extension("frecency")
+--[[ telescope.load_extension('dap') ]]
 
 -- Set some keybindings
 local builtin = require('telescope.builtin')
