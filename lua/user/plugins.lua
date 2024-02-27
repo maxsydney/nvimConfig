@@ -42,8 +42,8 @@ return packer.startup(function(use)
     -- My plugins here
 
     use { "wbthomason/packer.nvim" } -- Have packer manage itself
-    use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
-    use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
+    use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
+    use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
     use { "numToStr/Comment.nvim" }
     use { "JoosepAlviste/nvim-ts-context-commentstring" }
     use { "kyazdani42/nvim-web-devicons" }
@@ -67,15 +67,15 @@ return packer.startup(function(use)
     use { "navarasu/onedark.nvim" }
 
     -- cmp plugins
-    use { "hrsh7th/nvim-cmp" } -- The completion plugin
-    use { "hrsh7th/cmp-buffer" } -- buffer completions
-    use { "hrsh7th/cmp-path" } -- path completions
+    use { "hrsh7th/nvim-cmp" }         -- The completion plugin
+    use { "hrsh7th/cmp-buffer" }       -- buffer completions
+    use { "hrsh7th/cmp-path" }         -- path completions
     use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
     use { "hrsh7th/cmp-nvim-lsp" }
     use { "hrsh7th/cmp-nvim-lua" }
 
     -- snippets
-    use { "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" } --snippet engine
+    use { "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" }             --snippet engine
     use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" } -- a bunch of snippets to use
 
     -- LSP
@@ -84,14 +84,18 @@ return packer.startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
     }
-    use { "jose-elias-alvarez/null-ls.nvim" }
     use { "simrat39/rust-tools.nvim" }
 
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = { 'nvim-lua/plenary.nvim' }
     }
+    use {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        config = function()
+            require("telescope").load_extension("live_grep_args")
+        end }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use { 'nvim-telescope/telescope-dap.nvim' }
     use {
@@ -106,7 +110,7 @@ return packer.startup(function(use)
 
     -- DAP
     use { "mfussenegger/nvim-dap" }
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use { "mfussenegger/nvim-dap-python" }
     use { "theHamsta/nvim-dap-virtual-text" }
 end)
