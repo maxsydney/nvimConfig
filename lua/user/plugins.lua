@@ -39,8 +39,6 @@ packer.init({
 })
 -- Install your plugins here
 return packer.startup(function(use)
-    -- My plugins here
-
     use { "wbthomason/packer.nvim" } -- Have packer manage itself
     use { "nvim-lua/plenary.nvim" }  -- Useful lua functions used by lots of plugins
     use { "windwp/nvim-autopairs" }  -- Autopairs, integrates with both cmp and treesitter
@@ -97,7 +95,6 @@ return packer.startup(function(use)
             require("telescope").load_extension("live_grep_args")
         end }
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use { 'nvim-telescope/telescope-dap.nvim' }
     use {
         "nvim-telescope/telescope-frecency.nvim",
         config = function()
@@ -108,12 +105,14 @@ return packer.startup(function(use)
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' }
 
-    -- DAP
+    -- Debugging
     use { "mfussenegger/nvim-dap" }
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use { "mfussenegger/nvim-dap-python" }
     use { "theHamsta/nvim-dap-virtual-text" }
     use { "nvim-neotest/nvim-nio" }
+    use { 'nvim-telescope/telescope-dap.nvim' }
+    use { 'ldelossa/nvim-dap-projects' }
 
     -- Visual tweaks
     use { 'stevearc/dressing.nvim' }
