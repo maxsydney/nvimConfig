@@ -1,4 +1,4 @@
--- 
+--
 -- Configure DAP and associated UI
 --
 
@@ -26,14 +26,19 @@ end
 dapui.setup()
 
 -- Set debugger keymaps
-vim.keymap.set('n', '<F5>', function() dap.continue() end)
+vim.keymap.set('n', '<F5>', function()
+    vim.cmd("NvimTreeClose")
+    dap.continue()
+end)
 vim.keymap.set('n', '<F17>', function()
     dap.terminate()
     dapui.close()
+    vim.cmd("NvimTreeOpen")
 end)
 vim.keymap.set('n', '<S-F5>', function()
     dap.terminate()
     dapui.close()
+    vim.cmd("NvimTreeOpen")
 end)
 vim.keymap.set('n', '<F10>', function() dap.step_over() end)
 vim.keymap.set('n', '<F11>', function() dap.step_into() end)
