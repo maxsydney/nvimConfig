@@ -1,3 +1,3 @@
 -- Very simple configuration using dap-python
-local env = os.getenv("VIRTUAL_ENV")
-require('dap-python').setup(env .. '/bin/python')
+local pythonEnv = os.execute("which python3")
+require('dap-python').setup(pythonEnv)

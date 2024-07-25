@@ -118,5 +118,6 @@ local extensions = require('telescope').extensions
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<C-space>', builtin.commands, {})
 vim.keymap.set('n', 'fg', extensions.live_grep_args.live_grep_args, {})
+vim.keymap.set('n', 'fc', builtin.grep_string, {})
 vim.keymap.set('n', 'fb', builtin.buffers, {})
 vim.keymap.set('n', 'fh', builtin.help_tags, {})

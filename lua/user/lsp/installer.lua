@@ -17,7 +17,6 @@ local servers = {
     "lua_ls",               -- lua
     "taplo",                -- TOML
     "lemminx",              -- XML
-    "robotframework_ls",    -- Robot
     "jsonls"                -- JSON
 }
 
@@ -27,6 +26,9 @@ require("mason-lspconfig").setup {
 
 local lspconfig = require("lspconfig")
 local opts = {}
+
+
+--[[ require'lspconfig'.jsonls.setup{} ]]
 
 for _, server in pairs(servers) do
     opts = {
@@ -47,6 +49,11 @@ for _, server in pairs(servers) do
     if server == "lemminx" then
         local lemminx_opts = require("user.lsp.settings.lemminx")
         opts = vim.tbl_deep_extend("force", lemminx_opts, opts)
+    end
+
+    if server == "jsonls" then
+        local jsonls_opts = require("user.lsp.settings.jsonls")
+        opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
     end
 
     if server == "rust_analyzer" then

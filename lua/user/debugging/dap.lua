@@ -4,13 +4,8 @@
 
 local dap, dapui = require("dap"), require("dapui")
 
--- Load launch.json and auto-fill configurations
-require('dap.ext.vscode').load_launchjs(nil,
-    {
-        cppdbg = { 'c', 'cpp' },
-        lldb = { 'rust' }
-    }
-)
+-- Load nvim-dap-projects to allow for project specific configuration
+require('nvim-dap-projects').search_project_config()
 
 -- Launch dap-ui on dap events
 dap.listeners.before.attach.dapui_config = function()
@@ -100,10 +95,19 @@ dapui.setup(
 )
 
 -- Set debugger keymaps
-vim.keymap.set('n', '<F5>', function() dap.continue() end)
+vim.keymap.set('n', '<F5>', function()
+    vim.cmd("NvimTreeClose")
+    dap.continue()
+end)
 vim.keymap.set('n', '<F17>', function()
     dap.terminate()
     dapui.close()
+    vim.cmd("NvimTreeOpen")
+end)
+vim.keymap.set('n', '<S-F5>', function()
+    dap.terminate()
+    dapui.close()
+    vim.cmd("NvimTreeOpen")
 end)
 
 -- Duplicate for mac os

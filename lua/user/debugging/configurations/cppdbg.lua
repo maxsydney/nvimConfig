@@ -3,6 +3,5 @@
 require("dap").adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
-    command = '/home/maxsydney/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+    command = '/home/max/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
 }
-
