@@ -1,5 +1,4 @@
 -- Configuration set with VS code launch.json
--- Simply set up adapter here
 
 require("dap").adapters.cppdbg = {
     id = 'cppdbg',

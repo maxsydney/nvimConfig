@@ -1,11 +1,16 @@
--- 
+--
 -- Configure DAP and associated UI
 --
 
 local dap, dapui = require("dap"), require("dapui")
 
 -- Load launch.json and auto-fill configurations
-require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'c', 'cpp' } })
+require('dap.ext.vscode').load_launchjs(nil,
+    {
+        cppdbg = { 'c', 'cpp' },
+        lldb = { 'rust' }
+    }
+)
 
 -- Launch dap-ui on dap events
 dap.listeners.before.attach.dapui_config = function()
@@ -20,7 +25,79 @@ end
 --[[ dap.listeners.before.event_exited.dapui_config = function() ]]
 --[[     dapui.close() ]]
 --[[ end ]]
-dapui.setup()
+
+dapui.setup(
+    {
+        controls = {
+            element = "repl",
+            enabled = true,
+            icons = {
+                disconnect = "",
+                pause = "",
+                play = "",
+                run_last = "",
+                step_back = "",
+                step_into = "",
+                step_out = "",
+                step_over = "",
+                terminate = ""
+            }
+        },
+        element_mappings = {},
+        expand_lines = true,
+        floating = {
+            border = "single",
+            mappings = {
+                close = { "q", "<Esc>" }
+            }
+        },
+        force_buffers = true,
+        icons = {
+            collapsed = "",
+            current_frame = "",
+            expanded = ""
+        },
+        layouts = { {
+            elements = { {
+                id = "scopes",
+                size = 0.25
+            }, {
+                id = "breakpoints",
+                size = 0.25
+            }, {
+                id = "stacks",
+                size = 0.25
+            }, {
+                id = "watches",
+                size = 0.25
+            } },
+            position = "left",
+            size = 40
+        }, {
+            elements = { {
+                id = "repl",
+                size = 0.5
+            }, {
+                id = "console",
+                size = 0.5
+            } },
+            position = "bottom",
+            size = 10
+        } },
+        mappings = {
+            edit = "e",
+            expand = { "<CR>", "<2-LeftMouse>" },
+            open = "o",
+            remove = "d",
+            repl = "r",
+            toggle = "t"
+        },
+        render = {
+            indent = 1,
+            max_value_lines = 100
+        }
+    }
+)
 
 -- Set debugger keymaps
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
@@ -28,9 +105,18 @@ vim.keymap.set('n', '<F17>', function()
     dap.terminate()
     dapui.close()
 end)
+
+-- Duplicate for mac os
+vim.keymap.set('n', '<S-F5>', function()
+    dap.terminate()
+    dapui.close()
+end)
+
 vim.keymap.set('n', '<F10>', function() dap.step_over() end)
 vim.keymap.set('n', '<F11>', function() dap.step_into() end)
 vim.keymap.set('n', '<F23>', function() dap.step_out() end)
+-- Duplicate for mac os
+vim.keymap.set('n', '<S-F11>', function() dap.step_out() end)
 vim.keymap.set('n', 'Db', function() dap.toggle_breakpoint() end)
 vim.keymap.set('n', 'DB', function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end)
 vim.keymap.set('n', '<Leader>lp',
