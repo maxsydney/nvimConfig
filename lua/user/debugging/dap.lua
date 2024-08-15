@@ -1,11 +1,7 @@
 --
 -- Configure DAP and associated UI
 --
-
 local dap, dapui = require("dap"), require("dapui")
-
--- Load nvim-dap-projects to allow for project specific configuration
-require('nvim-dap-projects').search_project_config()
 
 -- Launch dap-ui on dap events
 dap.listeners.before.attach.dapui_config = function()

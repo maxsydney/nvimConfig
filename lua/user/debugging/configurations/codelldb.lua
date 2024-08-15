@@ -9,11 +9,10 @@ require('dap').adapters.codelldb = {
     }
 }
 
--- Add a default configuration for rust to use this adapter if no dap-project configuration
--- exists
+-- Add a default configuration for rust 
 require('dap').configurations.rust = {
     {
-        name = "Launch",
+        name = "Debug file",
         type = "codelldb",
         request = "launch",
         program = function()
